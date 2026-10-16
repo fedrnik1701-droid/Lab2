@@ -1,0 +1,104 @@
+
+### 1. Получить список пользователей
+GET http://localhost:8080/api/users
+
+###
+
+### 2. Создать пользователя (запускай один раз)
+POST http://localhost:8080/api/users
+Content-Type: application/json
+
+{
+  "name": "Фёдор Николаев",
+  "email": "email@kar.com"
+}
+
+###
+
+### 3. Получить список найденных предметов
+GET http://localhost:8080/api/found-items
+
+###
+
+### 4. Создать найденный предмет (запускай один раз)
+POST http://localhost:8080/api/found-items
+Content-Type: application/json
+
+{
+  "description": "Чёрный кошелёк",
+  "category": "Личные вещи",
+  "foundLocation": "Библиотека",
+  "status": "FOUND"
+}
+
+###
+
+### 5. Получить предмет по ID
+GET http://localhost:8080/api/found-items/1
+
+###
+
+### 6. Обновить предмет
+PATCH http://localhost:8080/api/found-items/1
+Content-Type: application/json
+
+{
+  "status": "CLAIMED"
+}
+
+###
+
+### 7. Создать заявление о пропаже (нужен существующий userId)
+POST http://localhost:8080/api/loss-reports
+Content-Type: application/json
+
+{
+  "userId": 1,
+  "description": "Потерян чёрный кошелёк",
+  "category": "Личные вещи",
+  "status": "OPEN"
+}
+
+###
+
+### 8. Получить список заявлений
+GET http://localhost:8080/api/loss-reports
+
+###
+
+### 9. Создать претензию (нужны существующие ID)
+POST http://localhost:8080/api/item-claims
+Content-Type: application/json
+
+{
+  "lossReportId": 1,
+  "foundItemId": 1,
+  "evidence": "В кошельке была моя банковская карта",
+  "status": "PENDING"
+}
+
+###
+
+### 10. Получить список претензий
+GET http://localhost:8080/api/item-claims
+
+###
+
+### 11. Создать акт передачи (нужен существующий itemClaimId)
+POST http://localhost:8080/api/handover-records
+Content-Type: application/json
+
+{
+  "itemClaimId": 1,
+  "confirmed": true
+}
+
+###
+
+### 12. Получить список актов передачи
+GET http://localhost:8080/api/handover-records
+
+###
+
+### 13. Удаление предмета — проверять в самом конце
+DELETE http://localhost:8080/api/found-items/1
